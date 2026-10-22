@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiệm Trà Sữa Thần Kỳ - RPG Live</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+
+<div class="game-container">
+    <!-- Header Thông tin Chủ quán (Player RPG Stats) -->
+    <header>
+        <div class="player-profile">
+            <div class="avatar-box">🧑‍🍳</div>
+            <div class="player-info">
+                <div class="player-name">Chủ Quán Tập Sự <span id="playerLevel" class="badge">Lv.1</span></div>
+                <div class="exp-bar-container">
+                    <div id="expBar" class="exp-bar" style="width: 0%;"></div>
+                </div>
+                <small>EXP: <span id="currentExp">0</span>/<span id="maxExp">100</span></small>
+            </div>
+        </div>
+    </header>
+
+    <!-- Thanh tài nguyên -->
+    <div class="stats-bar">
+        <div class="stat-item">💰 <span id="money">100</span> xu</div>
+        <div class="stat-item">⭐ <span id="reputation">10</span> Uy tín</div>
+        <div class="stat-item">📦 Kho: <span id="inventoryCount">12</span>/<span id="maxInventory">20</span></div>
+    </div>
+
+    <div class="main-content">
+        <!-- Khung Cửa Hàng & Khách Hàng (Sân Sân Khấu Game) -->
+        <div class="section shop-view">
+            <h2>🏬 Sảnh Phục Vụ</h2>
+            
+            <div class="customer-stage">
+                <!-- Nhân vật khách hàng -->
+                <div id="customerAvatar" class="character-avatar idle-anim">🏪</div>
+                
+                <!-- Bọt thoại RPG -->
+                <div class="speech-bubble" id="speechBubble">
+                    <p id="dialogueText">Nhấn nút bên dưới để đón vị khách đầu tiên nào!</p>
+                </div>
+            </div>
+
+            <button id="callCustomerBtn" class="btn-primary highlight-btn" onclick="nextCustomer()">🔔 Đón Khách Mới</button>
+
+            <!-- Ly Trà Sữa Xem Trước (Phù phép pha chế) -->
+            <div class="brewing-area">
+                <div class="cup" id="bobaCup">
+                    <div class="cup-fill" id="cupFill"></div>
+                    <div class="boba-pearls" id="bobaPearls"></div>
+                </div>
+                <p id="brewingStatus">Ly trà sữa trống</p>
+            </div>
+
+            <h3>📜 Menu Pha Chế</h3>
+            <div class="recipe-buttons">
+                <button onclick="mixDrink('Trà Sữa Truyền Thống')">🧋 Truyền Thống<br><small>Trà + Sữa + Trân Châu</small></button>
+                <button onclick="mixDrink('Trà Sữa Matcha')">🍵 Matcha Xanh<br><small>Trà + Sữa + Matcha</small></button>
+                <button onclick="mixDrink('Trà Sữa Khoai Môn')">🍠 Khoai Môn Tím<br><small>Trà + Sữa + Khoai Môn</small></button>
+                <button onclick="mixDrink('Hồng Trà Trái Cây')">🍓 Trà Trái Cây<br><small>Trà + Thạch</small></button>
+            </div>
+        </div>
+
+        <!-- Quản lý Kho & Nâng cấp -->
+        <div class="section management-view">
+            <h2>📦 Kho Nguyên Liệu</h2>
+            <div class="ingredient-grid">
+                <div class="ing-card">
+                    <span>🍃 Trà</span>
+                    <strong id="stockTea">5</strong>
+                    <button onclick="buyIngredient('Trà', 5)">Mua (5🪙)</button>
+                </div>
+                <div class="ing-card">
+                    <span>🥛 Sữa</span>
+                    <strong id="stockMilk">5</strong>
+                    <button onclick="buyIngredient('Sữa', 5)">Mua (5🪙)</button>
+                </div>
+                <div class="ing-card">
+                    <span>🧋 Trân Châu</span>
+                    <strong id="stockPearl">5</strong>
+                    <button onclick="buyIngredient('Trân Châu', 8)">Mua (8🪙)</button>
+                </div>
+                <div class="ing-card">
+                    <span>🍓 Thạch</span>
+                    <strong id="stockJelly">5</strong>
+                    <button onclick="buyIngredient('Thạch', 8)">Mua (8🪙)</button>
+                </div>
+            </div>
+
+            <h2>🛠️ Nâng Cấp Quán</h2>
+            <button class="btn-upgrade" onclick="upgradeShop()">🏰 Mở rộng kho chứa (+10 sức chứa) - 50 xu</button>
+
+            <h2>📜 Nhật Ký Quán</h2>
+            <div class="log-box" id="logBox">
+                <div>[Hệ thống] Tiệm trà sữa RPG mở cửa! Chúc bạn may mắn.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
